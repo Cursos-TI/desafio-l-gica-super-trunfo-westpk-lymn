@@ -1,0 +1,81 @@
+#include <stdio.h>
+
+typedef struct{
+    char estado[30];
+    int codigo;
+    char cidade[50];
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+} Carta;
+
+void cadastrarCarta(Carta *carta) {
+    printf("Digite o estado: ");
+    scanf("%s", carta->estado);
+    printf("Digite o código da carta: ");
+    scanf("%d", &carta->codigo);
+    printf("Digite o nome da cidade: ");
+    scanf("%49s", carta->cidade);  
+    printf("Digite a população: ");
+    scanf("%d", &carta->populacao);
+    printf("Digite a área (em km²): ");
+    scanf("%f", &carta->area);
+    printf("Digite o PIB: ");
+    scanf("%f", &carta->pib);
+    printf("Digite o número de pontos turísticos: ");
+    scanf("%d", &carta->pontosTuristicos);
+}
+
+void compararCartas(Carta carta1, Carta carta2, char *criterio) {
+    if (strcmp(criterio, "populacao") == 0) {
+        if (carta1.populacao < carta2.populacao) {
+            printf("Carta 1 vence com menor população.\n");
+        } else {
+            printf("Carta 2 vence com menor população.\n");
+        }
+    } else if (strcmp(criterio, "area") == 0) {
+        if (carta1.area > carta2.area) {
+            printf("Carta 1 vence com maior área.\n");
+        } else {
+            printf("Carta 2 vence com maior área.\n");
+        }
+    } else if (strcmp(criterio, "pib") == 0) {
+        if (carta1.pib > carta2.pib) {
+            printf("Carta 1 vence com maior PIB.\n");
+        } else {
+            printf("Carta 2 vence com maior PIB.\n");
+        }
+    } else if (strcmp(criterio, "pontosTuristicos") == 0) {
+        if (carta1.pontosTuristicos > carta2.pontosTuristicos) {
+            printf("Carta 1 vence com mais pontos turísticos.\n");
+        } else {
+            printf("Carta 2 vence com mais pontos turísticos.\n");
+        }
+    } else {
+        printf("Critério inválido.\n");
+    }
+}
+
+int main() {
+    Carta carta1, carta2;
+    char criterio[50];
+
+    printf("Cadastro da primeira carta:\n");
+    cadastrarCarta(&carta1);
+
+    printf("Cadastro da segunda carta:\n");
+    cadastrarCarta(&carta2);
+
+    printf("Digite o critério de comparação (populacao, area, pib, pontosTuristicos): ");
+    scanf("%s", criterio);
+
+    compararCartas(carta1, carta2, criterio);
+
+    return 0;
+
+    
+
+
+
+}
